@@ -2,6 +2,7 @@ import React, { Fragment, useRef, useState } from 'react';
 import { Prompt } from 'react-router';
 
 import Card from '../UI/Card';
+import Spinner from '../UI/Spinner';
 import classes from './NewQuoteForm.module.css';
 
 const NewQuoteForm = (props) => {
@@ -34,6 +35,12 @@ const NewQuoteForm = (props) => {
 					onSubmit={submitFormHandler}
 					onFocus={formFocusedHandler}
 				>
+					{props.isLoading && (
+						<div className={classes.loading}>
+							<Spinner />
+						</div>
+					)}
+
 					<div className={classes.control}>
 						<label htmlFor='author'>Author</label>
 						<input type='text' id='author' ref={authorInputRef} />

@@ -4,7 +4,7 @@ const FIREBASE_DOMAIN =
 export const getAllQuotes = async () => {
 	const response = await fetch(`${FIREBASE_DOMAIN}/quotes.json`);
 	const data = await response.json();
-	console.log(data);
+	// console.log(data);
 	if (!response.ok) {
 		throw new Error(data.message || 'Could not fetch quotes.');
 	}
@@ -66,6 +66,7 @@ export const addComment = async (requestData) => {
 	);
 
 	const data = await response.json();
+	console.log(data);
 
 	if (!response.ok) {
 		throw new Error(data.message || 'Could not add comment.');
@@ -77,11 +78,12 @@ export const addComment = async (requestData) => {
 export const getAllComments = async (quoteId) => {
 	const response = await fetch(`${FIREBASE_DOMAIN}/comments/${quoteId}.json`);
 
-	const data = response.json();
+	const data = await response.json();
 	if (!response.ok) {
 		throw new Error(data.message || 'Could not get comments.');
 	}
 
+	console.log(data);
 	const transformedComments = [];
 	for (const key in data) {
 		const commentObj = {
